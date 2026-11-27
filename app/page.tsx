@@ -204,64 +204,73 @@ export default function Home() {
     <main className="overflow-hidden bg-[#F9FAFC] text-[#05070C]">
 
       {/* HEADER */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-[#05070C]/95 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      
+{/* HEADER */}
+<header className="sticky top-0 z-50 border-b border-white/10 bg-[#05070C]/95 backdrop-blur-xl">
+  <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
 
-          <a href="#home" className="flex items-center gap-2">
-             <img src="images/logo.png" alt="Prime Spark Electrical Logo" className="h-18 w-auto"/>
+    <a href="#home" className="shrink-0">
+      <img
+        src="/images/logo.png"
+        alt="Prime Spark Electrical Logo"
+        className="h-12 w-auto object-contain sm:h-14"
+      />
+    </a>
 
-          </a>
+    <nav className="hidden items-center gap-4 text-sm font-semibold text-white 2xl:flex">
+      {navItems.map((item) => (
+        <a
+          key={item.label}
+          href={item.href}
+          className="whitespace-nowrap transition hover:text-[#FCAA2B]"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
 
-          <nav className="hidden items-center gap-6 text-sm font-semibold text-white xl:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="transition hover:text-[white]"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+    <a
+      href={phoneLink}
+      className="hidden shrink-0 items-center gap-2 rounded-xl bg-[#007DE3] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#FCAA2B] hover:text-[#05070C] lg:flex"
+    >
+      <Phone size={17} />
+      {phone}
+    </a>
 
-          <a
-            href={phoneLink}
-            className="hidden items-center gap-3 rounded-xl bg-[#007DE3] px-5 py-3 text-sm font-bold text-white transition hover:bg-[red] lg:flex"
-          >
-            <Phone size={17} />
-            {phone}
-          </a>
+    <button
+      onClick={() => setMenuOpen(!menuOpen)}
+      className="rounded-lg border border-white/20 p-2 text-white transition hover:bg-white/10 2xl:hidden"
+      aria-label="Toggle navigation"
+      aria-expanded={menuOpen}
+    >
+      {menuOpen ? <X size={24} /> : <Menu size={24} />}
+    </button>
+  </div>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="rounded-lg border border-slate-200 p-2 xl:hidden"
-            aria-label="Toggle navigation"
-          >
-            {menuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
+  {menuOpen && (
+    <nav className="flex flex-col gap-1 border-t border-white/10 bg-[#05070C] px-5 py-5 text-white 2xl:hidden">
+      {navItems.map((item) => (
+        <a
+          key={item.label}
+          href={item.href}
+          onClick={() => setMenuOpen(false)}
+          className="rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 hover:text-[#FCAA2B]"
+        >
+          {item.label}
+        </a>
+      ))}
 
-        {menuOpen && (
-          <nav className="flex flex-col gap-4 border-t bg-[#F9FAFC] px-6 py-6 font-semibold xl:hidden">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
+      <a
+        href={phoneLink}
+        className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-[#007DE3] p-4 font-bold text-white"
+      >
+        <Phone size={18} />
+        Call Now: {phone}
+      </a>
+    </nav>
+  )}
+</header>
 
-            <a
-              href={phoneLink}
-              className="rounded-lg bg-[#007DE3] p-3 text-center font-bold text-white"
-            >
-              Call Now: {phone}
-            </a>
-          </nav>
-        )}
-      </header>
 
       {/* HERO */}
       <section id="home" className="relative overflow-hidden bg-[#05070C] text-white">
