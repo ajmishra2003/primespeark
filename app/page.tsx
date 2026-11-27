@@ -992,7 +992,7 @@ export default function Home() {
 
   {/* COPYRIGHT */}
   <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-center text-xs">
-    © {new Date().getFullYear()} Prime Spark Electrical. All rights reserved.
+    © Prime Spark Electrical. All rights reserved.
   </div>
 
 </footer>
